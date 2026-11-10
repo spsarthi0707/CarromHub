@@ -1,0 +1,27 @@
+# Render.com blueprint — "New +" → "Blueprint" → pick this repo. Free tier works; add the disk to keep data.
+services:
+  - type: web
+    name: carromhub
+    runtime: docker
+    plan: starter
+    healthCheckPath: /healthz
+    autoDeploy: true
+    disk:
+      name: carrom-data
+      mountPath: /app/data
+      sizeGB: 1
+    envVars:
+      - key: ALLOWED_HOSTS
+        value: "*"
+      - key: TRUST_PROXY
+        value: "1"
+      - key: DATA_DIR
+        value: /app/data
+      - key: OTP_DELIVERY
+        value: dev          # change to "sms" after setting SMS_WEBHOOK_URL
+      - key: SMS_WEBHOOK_URL
+        sync: false
+      - key: SMS_WEBHOOK_KEY
+        sync: false
+      - key: ADMIN_KEY
+        generateValue: true

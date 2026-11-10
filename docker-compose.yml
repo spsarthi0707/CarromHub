@@ -1,0 +1,33 @@
+# Self-host on any VPS: `docker compose up -d` then put Caddy/Nginx (HTTPS) in front.
+services:
+  carromhub:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-*}
+      TRUST_PROXY: "1"
+      OTP_DELIVERY: ${OTP_DELIVERY:-dev}
+      SMS_WEBHOOK_URL: ${SMS_WEBHOOK_URL:-}
+      SMS_WEBHOOK_KEY: ${SMS_WEBHOOK_KEY:-}
+      ADMIN_KEY: ${ADMIN_KEY:-}
+    volumes:
+      - carrom-data:/app/data
+
+  # Automatic HTTPS. Set DOMAIN=carromhub.example.com in .env and point DNS at this server.
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN:-localhost}
+    command: caddy reverse-proxy --from ${DOMAIN:-localhost} --to carromhub:3000
+    volumes:
+      - caddy-data:/data
+
+volumes:
+  carrom-data:
+  caddy-data:

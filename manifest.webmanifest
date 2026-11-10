@@ -1,0 +1,23 @@
+{
+  "name": "CarromHub — Live scores, rules, events & shop",
+  "short_name": "CarromHub",
+  "description": "Live carrom scores, tournaments, rankings, the Laws of Carrom, lessons, clubs and a dealer marketplace.",
+  "start_url": "/#/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0d12",
+  "theme_color": "#0c0e13",
+  "lang": "en",
+  "categories": ["sports", "education"],
+  "icons": [
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icons/maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Live scores", "url": "/#/live", "description": "Matches in progress" },
+    { "name": "Score keeper", "url": "/#/scorer", "description": "Keep score of a friendly" },
+    { "name": "Laws of Carrom", "url": "/#/rules", "description": "Searchable rulebook" },
+    { "name": "Organise a tournament", "url": "/#/organise", "description": "Boards, umpires & scoring for your event" }
+  ]
+}
