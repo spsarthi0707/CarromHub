@@ -179,7 +179,8 @@ Implemented client-side in the prototype's score keeper (`js/app.js → scorer`)
 | Step | How |
 |---|---|
 | Local network (today) | `HOST=0.0.0.0 ALLOWED_HOSTS=<your-ip>:3000 npm start` → phones on the same Wi-Fi open `http://<your-ip>:3000` |
-| Public, zero-ops | Push to GitHub → Render “Blueprint” from `render.yaml` (free tier + 1 GB disk) → custom domain → HTTPS automatic |
+| Temporary public demo | Render “Blueprint” from `render.yaml` → free `onrender.com` URL + HTTPS. Sleeps after 15 minutes idle; local SQLite is ephemeral and resets on sleep, restart, or redeploy. Demo data only. |
+| Persistent public deployment | Use a paid persistent disk or move the database to a managed database before launch. The free Render service cannot attach a persistent disk. |
 | Public, Fly.io | `fly launch --copy-config --no-deploy` · `fly volumes create carrom_data -s 1 -r bom` · `fly deploy` |
 | Own VPS | Copy `.env.example` → `.env` (set `DOMAIN`) · `docker compose up -d` (Caddy terminates HTTPS) |
 | OTP by SMS | Set `OTP_DELIVERY=sms` and `SMS_WEBHOOK_URL` (+ `SMS_WEBHOOK_KEY`) to any gateway/relay that accepts `POST {to, message}` — MSG91, Fast2SMS, Twilio via a 10-line function |
